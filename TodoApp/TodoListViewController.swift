@@ -23,23 +23,8 @@ class TodoListViewController: UIViewController {
     }
 
     @objc func addButtonTouched(){
-        print("Touch")
-        let alert = UIAlertController(title: nil, message: "Add your task", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
-            
-            self.listLabel.text = alert.textFields?.first?.text
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel")
-        }
-        
-        alert.addTextField { textField in
-            textField.placeholder = "Your task..."
-        }
-        
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        let addToDoVC = AddToDoViewController()
+        self.present(addToDoVC, animated: true, completion: nil)
     }
     
     @objc func editButtonTouched(){
