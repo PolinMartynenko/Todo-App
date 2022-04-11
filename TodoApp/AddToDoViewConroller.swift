@@ -20,7 +20,7 @@ class AddToDoViewController: UIViewController {
     
     @objc func closedButtonTouched(){
         print("Touched")
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpClousedButton(){
@@ -33,12 +33,10 @@ class AddToDoViewController: UIViewController {
         closedButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            closedButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            closedButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             closedButton.widthAnchor.constraint(equalToConstant: 100)
+            
         ])
         
     }
-    
-    
-    
 }

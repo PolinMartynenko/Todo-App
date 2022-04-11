@@ -16,6 +16,9 @@ class TodoListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .yellow
+        navigationItem.title = "Todo list"
+        
+        
         setUpAddButton()
         setUpLable()
         setUpEditButton()
@@ -24,7 +27,7 @@ class TodoListViewController: UIViewController {
 
     @objc func addButtonTouched(){
         let addToDoVC = AddToDoViewController()
-        self.present(addToDoVC, animated: true, completion: nil)
+        navigationController?.pushViewController(addToDoVC, animated:  true)
     }
     
     @objc func editButtonTouched(){
