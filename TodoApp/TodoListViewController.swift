@@ -16,13 +16,12 @@ class TodoListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .yellow
-        setUpButton()
+        setUpAddButton()
         setUpLable()
         setUpEditButton()
       
     }
 
-    
     @objc func addButtonTouched(){
         print("Touch")
         let alert = UIAlertController(title: nil, message: "Add your task", preferredStyle: .alert)
@@ -46,7 +45,11 @@ class TodoListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func setUpButton(){
+    @objc func editButtonTouched(){
+        print("Touched")
+    }
+    
+    private func setUpAddButton(){
         addButton.setTitle("Add", for: .normal)
         addButton.setTitleColor(.gray, for: .normal)
         addButton.backgroundColor = .green
@@ -73,16 +76,16 @@ class TodoListViewController: UIViewController {
         
     }
     private func setUpEditButton(){
-        print("Touch")
         editButton.setTitle("Edit", for: .normal)
         editButton.setTitleColor(.red, for: .normal)
         editButton.backgroundColor = .blue //цвет фотки
         view.addSubview(editButton)
         editButton.layer.cornerRadius = 10 //скругление кнопки
+        editButton.addTarget(self, action: #selector(editButtonTouched), for: .touchUpInside)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            editButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            editButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            editButton.leadingAnchor.constraint(equalTo: listLabel.trailingAnchor, constant: 10),
+            editButton.centerYAnchor.constraint(equalTo: listLabel.centerYAnchor),
             editButton.widthAnchor.constraint(equalToConstant: 100)
         ])
         
