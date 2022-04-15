@@ -11,18 +11,21 @@ class AddToDoViewController: UIViewController {
 //    let closedButton = UIButton()
     let textField = UITextField()
     let doneButton = UIButton()
+    var delegate: AddToDoDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        navigationItem.title = "Add tour task"
         setUpTextField()
         setUpDoneButton()
     }
     
     @objc func doneButtonTouch(){
-        print("Done")
+        delegate?.setText(textField.text)
+        navigationController?.popViewController(animated: true)//закрытие красного экрана
     }
-
+    
     
     func setUpTextField(){
         textField.placeholder = "Enter your task"
@@ -58,3 +61,7 @@ class AddToDoViewController: UIViewController {
     
 }
 
+
+protocol AddToDoDelegate {
+    func setText(_ text: String?)
+}

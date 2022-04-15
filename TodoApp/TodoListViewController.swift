@@ -11,6 +11,7 @@ class TodoListViewController: UIViewController {
     let addButton = UIButton()
     let listLabel = UILabel()
     let editButton = UIButton()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,16 +19,16 @@ class TodoListViewController: UIViewController {
         view.backgroundColor = .yellow
         navigationItem.title = "Todo list"
         
-        
         setUpAddButton()
         setUpLable()
         setUpEditButton()
-      
     }
 
     @objc func addButtonTouched(){
         let addToDoVC = AddToDoViewController()
+        addToDoVC.delegate = self
         navigationController?.pushViewController(addToDoVC, animated:  true)
+        
     }
     
     @objc func editButtonTouched(){
@@ -93,9 +94,11 @@ class TodoListViewController: UIViewController {
             editButton.centerYAnchor.constraint(equalTo: listLabel.centerYAnchor),
             editButton.widthAnchor.constraint(equalToConstant: 100)
         ])
-        
     }
-    
-    
 }
 
+extension TodoListViewController: AddToDoDelegate {
+    func setText(_ text: String?) {
+        listLabel.text = text
+    }
+}
