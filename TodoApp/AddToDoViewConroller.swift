@@ -8,35 +8,53 @@
 import UIKit
 
 class AddToDoViewController: UIViewController {
-    let closedButton = UIButton()
+//    let closedButton = UIButton()
+    let textField = UITextField()
+    let doneButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        
-        
-        setUpClousedButton()
+        setUpTextField()
+        setUpDoneButton()
     }
     
-    @objc func closedButtonTouched(){
-        print("Touched")
-        navigationController?.popViewController(animated: true)
+    @objc func doneButtonTouch(){
+        print("Done")
     }
+
     
-    private func setUpClousedButton(){
-        closedButton.setTitle("Cloused", for: .normal)
-        closedButton.backgroundColor = .green
-        closedButton.setTitleColor(.black, for: .normal)
+    func setUpTextField(){
+        textField.placeholder = "Enter your task"
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
         
-        closedButton.addTarget(self, action: #selector(closedButtonTouched), for: .touchUpInside)
-        view.addSubview(closedButton) //добавить кнопку
-        closedButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(textField) //показать текстфилд
+        textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            closedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            closedButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            closedButton.widthAnchor.constraint(equalToConstant: 100)
-            
+            textField.heightAnchor.constraint(equalToConstant: 30),
+            textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
-        
     }
+    
+    private func setUpDoneButton(){
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitleColor(.red, for: .normal)
+        doneButton.backgroundColor = .white
+        doneButton.addTarget(self, action: #selector(doneButtonTouch), for: .touchUpInside)
+        
+        //позиционирование
+        self.view.addSubview(doneButton)//показать конпку
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 5),
+            doneButton.centerXAnchor.constraint(equalTo: textField.centerXAnchor)
+        ])
+            
+    }
+    
+    
 }
+
