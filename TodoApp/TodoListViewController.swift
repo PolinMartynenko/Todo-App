@@ -73,6 +73,7 @@ class TodoListViewController: UIViewController {
     
     private func setUpLable(){
         listLabel.text = "Task list is empty"
+        listLabel.numberOfLines = 0
         view.addSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -91,11 +92,13 @@ class TodoListViewController: UIViewController {
         editButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             editButton.leadingAnchor.constraint(equalTo: listLabel.trailingAnchor, constant: 10),
+            editButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -10),//меньше или равно в строчке знаков
             editButton.centerYAnchor.constraint(equalTo: listLabel.centerYAnchor),
             editButton.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
+
 
 extension TodoListViewController: AddToDoDelegate {
     func setText(_ text: String?) {

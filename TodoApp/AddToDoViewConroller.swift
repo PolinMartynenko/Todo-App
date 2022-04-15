@@ -31,6 +31,8 @@ class AddToDoViewController: UIViewController {
         textField.placeholder = "Enter your task"
         textField.backgroundColor = .white
         textField.borderStyle = .roundedRect
+        textField.delegate = self
+        textField.returnKeyType = .done
         
         self.view.addSubview(textField) //показать текстфилд
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +62,23 @@ class AddToDoViewController: UIViewController {
     
     
 }
-
+extension AddToDoViewController: UITextFieldDelegate{
+    //количество символов в строке написанных//этот метод вызывается каждый раз когда юзер вводит символ на клавиатуре, здесь мы определяем разрешаем ли мы вводить его дальше
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = textField.text ?? ""
+        
+        guard let stringRange = Range(range, in: text) else {return false}
+        let updateText = text.replacingCharacters(in: stringRange, with: string)
+        return updateText.count <= 15
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //обработка нажатия кнопки done на клавиатуре.
+        print("return touched")
+        delegate?.setText(textField.text)
+        navigationController?.popViewController(animated: true)
+        return true
+    }
+}
 
 protocol AddToDoDelegate {
     func setText(_ text: String?)
