@@ -11,7 +11,7 @@ class TodoListViewController: UIViewController {
     let addButton = UIButton()
     let listLabel = UILabel()
     let editButton = UIButton()
-   
+    let uiSwitch = UISwitch()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +20,10 @@ class TodoListViewController: UIViewController {
         navigationItem.title = "Todo list"
         
         setUpAddButton()
+        setUpSwitch()
         setUpLable()
         setUpEditButton()
+      
     }
 
     @objc func addButtonTouched(){
@@ -55,6 +57,16 @@ class TodoListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func setUpSwitch (){
+        view.addSubview(uiSwitch)
+        uiSwitch.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            uiSwitch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            uiSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+        ])
+        
+    }
+    
     private func setUpAddButton(){
         addButton.setTitle("Add", for: .normal)
         addButton.setTitleColor(.gray, for: .normal)
@@ -77,7 +89,7 @@ class TodoListViewController: UIViewController {
         view.addSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            listLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            listLabel.leadingAnchor.constraint(equalTo: uiSwitch.trailingAnchor, constant: 10),
             listLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
         ])
         
