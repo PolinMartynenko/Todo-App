@@ -13,6 +13,13 @@ class TodoListViewController: UIViewController {
     let editButton = UIButton()
     let uiSwitch = UISwitch()
     let stackView = UIStackView()
+    
+    var entry = Entry(isCompleted: false, text: "Placeholder text"){
+        didSet{
+            listLabel.text = entry.text
+            uiSwitch.isOn = entry.isCompleted
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +37,11 @@ class TodoListViewController: UIViewController {
         addToDoVC.delegate = self
         navigationController?.pushViewController(addToDoVC, animated:  true)
         
+    }
+    
+    @objc func swichValueChanged(_ uiSwitch: UISwitch){
+        print(uiSwitch.isOn)
+        entry.isCompleted = uiSwitch.isOn
     }
     
     @objc func editButtonTouched(){
@@ -91,12 +103,14 @@ class TodoListViewController: UIViewController {
     }
     
     private func setUpSwitch (){
+        uiSwitch.addTarget(self, action: #selector(swichValueChanged), for: .valueChanged)
+        uiSwitch.isOn = entry.isCompleted
         stackView.addArrangedSubview(uiSwitch)
         uiSwitch.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setUpLable(){
-        listLabel.text = "Task list is empty"
+        listLabel.text = entry.text
         listLabel.numberOfLines = 0
         stackView.addArrangedSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -122,6 +136,6 @@ class TodoListViewController: UIViewController {
 
 extension TodoListViewController: AddToDoDelegate {
     func setText(_ text: String?) {
-        listLabel.text = text
+        entry.text = text ?? ""
     }
 }
