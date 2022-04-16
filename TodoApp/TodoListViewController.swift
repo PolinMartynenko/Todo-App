@@ -12,6 +12,7 @@ class TodoListViewController: UIViewController {
     let listLabel = UILabel()
     let editButton = UIButton()
     let uiSwitch = UISwitch()
+    let stackView = UIStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +21,7 @@ class TodoListViewController: UIViewController {
         navigationItem.title = "Todo list"
         
         setUpAddButton()
-        setUpSwitch()
-        setUpLable()
-        setUpEditButton()
+        setUpStackView()
       
     }
 
@@ -57,16 +56,6 @@ class TodoListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func setUpSwitch (){
-        view.addSubview(uiSwitch)
-        uiSwitch.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            uiSwitch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            uiSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
-        ])
-        
-    }
-    
     private func setUpAddButton(){
         addButton.setTitle("Add", for: .normal)
         addButton.setTitleColor(.gray, for: .normal)
@@ -83,31 +72,50 @@ class TodoListViewController: UIViewController {
         ])
     }
     
+    private func setUpStackView(){
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            
+        ])
+        
+        setUpSwitch()
+        setUpLable()
+        setUpEditButton()
+    }
+    
+    private func setUpSwitch (){
+        stackView.addArrangedSubview(uiSwitch)
+        uiSwitch.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     private func setUpLable(){
         listLabel.text = "Task list is empty"
         listLabel.numberOfLines = 0
-        view.addSubview(listLabel)
+        stackView.addArrangedSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            listLabel.leadingAnchor.constraint(equalTo: uiSwitch.trailingAnchor, constant: 10),
-            listLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
-        ])
         
     }
+    
     private func setUpEditButton(){
         editButton.setTitle("Edit", for: .normal)
         editButton.setTitleColor(.red, for: .normal)
         editButton.backgroundColor = .blue //цвет фотки
-        view.addSubview(editButton)
+        stackView.addArrangedSubview(editButton)
         editButton.layer.cornerRadius = 10 //скругление кнопки
         editButton.addTarget(self, action: #selector(editButtonTouched), for: .touchUpInside)
         editButton.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            editButton.leadingAnchor.constraint(equalTo: listLabel.trailingAnchor, constant: 10),
-            editButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -10),//меньше или равно в строчке знаков
-            editButton.centerYAnchor.constraint(equalTo: listLabel.centerYAnchor),
-            editButton.widthAnchor.constraint(equalToConstant: 100)
+            editButton.widthAnchor.constraint(equalToConstant: 60)
         ])
+        
     }
 }
 
