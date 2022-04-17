@@ -29,9 +29,10 @@ class TodoListViewController: UIViewController {
         
         setUpAddButton()
         setUpStackView()
+        
       
     }
-
+    
     @objc func addButtonTouched(){
         let addToDoVC = AddToDoViewController()
         addToDoVC.delegate = self
@@ -69,19 +70,7 @@ class TodoListViewController: UIViewController {
     }
     
     private func setUpAddButton(){
-        addButton.setTitle("Add", for: .normal)
-        addButton.setTitleColor(.gray, for: .normal)
-        addButton.backgroundColor = .green
-        addButton.layer.cornerRadius = 10
-        addButton.addTarget(self, action: #selector(addButtonTouched), for: .touchUpInside)//обработка нажатия
-        
-        view.addSubview(addButton) //добавить кнопку
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            addButton.widthAnchor.constraint(equalToConstant: 100)
-        ])
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTouched))
     }
     
     private func setUpStackView(){
