@@ -13,6 +13,7 @@ class TodoListViewController: UIViewController {
     let editButton = UIButton()
     let uiSwitch = UISwitch()
     let stackView = UIStackView()
+    let tableView = UITableView()
     
     var entry = Entry(isCompleted: false, text: "Placeholder text"){
         didSet{
@@ -28,7 +29,8 @@ class TodoListViewController: UIViewController {
         navigationItem.title = "Todo list"
         
         setUpAddButton()
-        setUpStackView()
+//        setUpStackView()
+        setUpTableView()
         
       
     }
@@ -67,6 +69,19 @@ class TodoListViewController: UIViewController {
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func setUpTableView(){
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10)
+        ])
     }
     
     private func setUpAddButton(){
@@ -127,4 +142,23 @@ extension TodoListViewController: AddToDoDelegate {
     func setText(_ text: String?) {
         entry.text = text ?? ""
     }
+}
+
+extension TodoListViewController: UITableViewDataSource { // создание ячеек таблицы(источник данных)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //ячейки для таблицы мы не инициализируем на прямую, а используем этот метод
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = "Polina"
+        
+        return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+        
+    }
+    
 }
