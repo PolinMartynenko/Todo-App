@@ -15,10 +15,11 @@ class TodoListViewController: UIViewController {
     let stackView = UIStackView()
     let tableView = UITableView()
     
-    var entry = Entry(isCompleted: false, text: "Placeholder text"){
+    var entries = [Entry](){ //пустой массив
         didSet{
-            listLabel.text = entry.text
-            uiSwitch.isOn = entry.isCompleted
+//            listLabel.text = entry.text
+//            uiSwitch.isOn = entry.isCompleted
+            tableView.reloadData()
         }
     }
 
@@ -44,7 +45,7 @@ class TodoListViewController: UIViewController {
     
     @objc func swichValueChanged(_ uiSwitch: UISwitch){
         print(uiSwitch.isOn)
-        entry.isCompleted = uiSwitch.isOn
+//        entry.isCompleted = uiSwitch.isOn
     }
     
     @objc func editButtonTouched(){
@@ -108,13 +109,13 @@ class TodoListViewController: UIViewController {
     
     private func setUpSwitch (){
         uiSwitch.addTarget(self, action: #selector(swichValueChanged), for: .valueChanged)
-        uiSwitch.isOn = entry.isCompleted
+//        uiSwitch.isOn = entry.isCompleted
         stackView.addArrangedSubview(uiSwitch)
         uiSwitch.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setUpLable(){
-        listLabel.text = entry.text
+//        listLabel.text = entry.text
         listLabel.numberOfLines = 0
         stackView.addArrangedSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -140,7 +141,12 @@ class TodoListViewController: UIViewController {
 
 extension TodoListViewController: AddToDoDelegate {
     func setText(_ text: String?) {
-        entry.text = text ?? ""
+//        entry.text = text ?? ""
+        guard let text = text else {
+            return
+        }
+        let entry = Entry(isCompleted: false, text: text)
+        entries.append(entry)
     }
 }
 
@@ -148,7 +154,8 @@ extension TodoListViewController: UITableViewDataSource { // создание я
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //ячейки для таблицы мы не инициализируем на прямую, а используем этот метод
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "Polina"
+        let entry =  entries[indexPath.row]
+        cell.textLabel?.text = entry.text
         
         return cell
     }
@@ -157,7 +164,7 @@ extension TodoListViewController: UITableViewDataSource { // создание я
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return entries.count
         
     }
     
