@@ -14,6 +14,7 @@
 		EEB55EA528035F1B0095B165 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB55EA428035F1B0095B165 /* TodoListViewController.swift */; };
 		EEB55EAA28035F1C0095B165 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEB55EA928035F1C0095B165 /* Assets.xcassets */; };
 		EEB55EAD28035F1C0095B165 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEB55EAB28035F1C0095B165 /* LaunchScreen.storyboard */; };
+		EEDC8006280F26F4004CFEFA /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDC8005280F26F4004CFEFA /* EntryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EEB55EA928035F1C0095B165 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEB55EAC28035F1C0095B165 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEB55EAE28035F1C0095B165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEDC8005280F26F4004CFEFA /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				EEB55EA028035F1B0095B165 /* AppDelegate.swift */,
 				EEB55EA228035F1B0095B165 /* SceneDelegate.swift */,
 				EEB55EA428035F1B0095B165 /* TodoListViewController.swift */,
+				EEDC8005280F26F4004CFEFA /* EntryTableViewCell.swift */,
 				EEB06D76280491F800F5717D /* AddToDoViewConroller.swift */,
 				EE4DCAF0280B37E700082F4E /* Entry.swift */,
 				EEB55EA928035F1C0095B165 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDC8006280F26F4004CFEFA /* EntryTableViewCell.swift in Sources */,
 				EE4DCAF1280B37E700082F4E /* Entry.swift in Sources */,
 				EEB55EA528035F1B0095B165 /* TodoListViewController.swift in Sources */,
 				EEB55EA128035F1B0095B165 /* AppDelegate.swift in Sources */,
