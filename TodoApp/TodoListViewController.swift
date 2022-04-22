@@ -75,6 +75,7 @@ extension TodoListViewController: AddToDoDelegate {
     }
 }
 
+
 extension TodoListViewController: UITableViewDataSource { // создание ячеек таблицы(источник данных)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //ячейки для таблицы мы не инициализируем на прямую, а используем этот метод
@@ -86,10 +87,16 @@ extension TodoListViewController: UITableViewDataSource { // создание я
                 entry.isCompleted = cell.uiSwitch.isOn
                 self.entries[indexPath.row] = entry
             }
+            cell.handleEditChange = {
+                let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
             return cell
         } else {
             return tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         }
+        
         
     }
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -13,6 +13,7 @@ class EntryTableViewCell : UITableViewCell {
     let uiSwitch = UISwitch()
     let stackView = UIStackView()
     var handleSwitchChange: ((Bool) -> Void)?
+    var handleEditChange: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,11 +31,10 @@ class EntryTableViewCell : UITableViewCell {
 //        entry.isCompleted = uiSwitch.isOn
     }
     
-    @objc func editButtonTouched(){
+    @objc func editButtonTouched(_ editButton: UIButton){
         print("Touched")
+        handleEditChange?()
     }
-    
-    
     
     private func setUpStackView(){
         stackView.axis = .horizontal
