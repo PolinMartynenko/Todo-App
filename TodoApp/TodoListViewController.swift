@@ -166,6 +166,7 @@ extension TodoListViewController: UITableViewDataSource { // создание я
                 entry.isCompleted = isOn
                 guard let indexToChange = self.allEntries.firstIndex(where: { $0.id == entry.id }) else { return }
                 self.allEntries[indexToChange] = entry
+                self.saveAllEntries()
             }
             cell.handleEditChange = {
                 self.handleEditChange(entry)
