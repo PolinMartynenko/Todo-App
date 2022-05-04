@@ -128,6 +128,16 @@ class TodoListViewController: UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func saveAllEntries(){
+        let encoder = JSONEncoder()//объект который отвечает за перегон данных
+        do{
+            let data =  try encoder.encode(allEntries)
+            UserDefaults.standard.set(data, forKey: "com.all.entries")
+        } catch {
+            print(error)
+        }
+    }
 }
 
 
@@ -140,16 +150,7 @@ extension TodoListViewController: AddToDoDelegate {
         let entry = Entry(isCompleted: false, text: text)
         allEntries.append(entry)
         
-        let encoder = JSONEncoder()//объект который отвечает за перегон данных
-        do{
-          let data =  try encoder.encode(allEntries)
-            UserDefaults.standard.set(data, forKey: "com.all.entries")
-            
-        } catch {
-            print(error)
-        }
-        //сохранять в хранилище (storage)
-        //UserDefaults.standard.set(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
+        saveAllEntries()
     }
 }
 
@@ -199,9 +200,12 @@ extension TodoListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-//            filtredEntries.remove(at: indexPath.row)
-            // handle delete (by removing the data from your array and updating the tableview)
+            let entry = filtredEntries[indexPath.row]
+            guard let index = allEntries.firstIndex(where: {
+                $0.id == entry.id
+            }) else { return }
+            allEntries.remove(at: index)
+            saveAllEntries()
         }
     }
-    
 }
