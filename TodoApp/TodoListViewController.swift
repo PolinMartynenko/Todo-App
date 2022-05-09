@@ -161,6 +161,7 @@ extension TodoListViewController: UITableViewDataSource { // создание я
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? EntryTableViewCell {
             var entry =  filtredEntries[indexPath.row]
             cell.listLabel.text = entry.text
+//            cell.dateLable.text = entry.date
             cell.uiSwitch.isOn = entry.isCompleted
             cell.handleSwitchChange = { isOn in
                 entry.isCompleted = isOn
@@ -209,4 +210,10 @@ extension TodoListViewController: UITableViewDelegate {
             saveAllEntries()
         }
     }
+    
+    func tableView(_: UITableView, heightForRowAt: IndexPath) -> CGFloat{
+        return 70
+    }
+    
+    
 }

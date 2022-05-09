@@ -11,4 +11,5 @@ struct Entry: Codable {
     var id = UUID()
     var isCompleted : Bool
     var text: String
+    var date: Date?
 }

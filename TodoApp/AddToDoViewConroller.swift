@@ -12,12 +12,14 @@ class AddToDoViewController: UIViewController {
     let textField = UITextField()
     let doneButton = UIButton()
     var delegate: AddToDoDelegate?
+    let datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
         navigationItem.title = "Add tour task"
         setUpTextField()
+        setUpDatePicker()
         setUpDoneButton()
     }
     
@@ -44,6 +46,15 @@ class AddToDoViewController: UIViewController {
         ])
     }
     
+    private func setUpDatePicker(){
+        self.view.addSubview(datePicker)
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            datePicker.topAnchor.constraint(equalTo: textField.bottomAnchor),
+            datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
     private func setUpDoneButton(){
         doneButton.setTitle("Done", for: .normal)
         doneButton.setTitleColor(.red, for: .normal)
@@ -54,7 +65,7 @@ class AddToDoViewController: UIViewController {
         self.view.addSubview(doneButton)//показать конпку
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 5),
+            doneButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 5),
             doneButton.centerXAnchor.constraint(equalTo: textField.centerXAnchor)
         ])
             

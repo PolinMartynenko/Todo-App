@@ -9,9 +9,11 @@ import UIKit
 
 class EntryTableViewCell : UITableViewCell {
     let listLabel = UILabel()
+    let dateLable = UILabel()
     let editButton = UIButton()
     let uiSwitch = UISwitch()
     let stackView = UIStackView()
+    let lableStackView = UIStackView()
     var handleSwitchChange: ((Bool) -> Void)?
     var handleEditChange: (() -> Void)?
     
@@ -35,23 +37,34 @@ class EntryTableViewCell : UITableViewCell {
         print("Touched")
         handleEditChange?()
     }
+   
     
     private func setUpStackView(){
         stackView.axis = .horizontal
         stackView.spacing = 10
-        
+        stackView.alignment = .center
         contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             
         ])
-        
         setUpSwitch()
-        setUpLable()
+        setUpLableStackView()
         setUpEditButton()
+        
+    }
+    func setUpLableStackView(){
+        lableStackView.axis = .vertical
+        lableStackView.alignment = .leading
+        lableStackView.spacing = 10
+        stackView.addArrangedSubview(lableStackView)
+        lableStackView.translatesAutoresizingMaskIntoConstraints = false
+        setUpLable()
+        setUpDatelable()
     }
     
     private func setUpSwitch (){
@@ -61,12 +74,24 @@ class EntryTableViewCell : UITableViewCell {
         uiSwitch.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private func setUpDatelable(){
+        dateLable.text = "hglg"
+        dateLable.numberOfLines = 0
+        lableStackView.addArrangedSubview(dateLable)
+        dateLable.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dateLable.heightAnchor.constraint(equalToConstant: 25)
+        ])
+    }
+    
     private func setUpLable(){
 //        listLabel.text = entry.text
         listLabel.numberOfLines = 0
-        stackView.addArrangedSubview(listLabel)
+        lableStackView.addArrangedSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+        NSLayoutConstraint.activate([
+        listLabel.heightAnchor.constraint(equalToConstant: 25)
+        ])
     }
     
     private func setUpEditButton(){
@@ -79,7 +104,8 @@ class EntryTableViewCell : UITableViewCell {
         editButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            editButton.widthAnchor.constraint(equalToConstant: 60)
+            editButton.widthAnchor.constraint(equalToConstant: 60),
+            editButton.heightAnchor.constraint(equalToConstant: 25)
         ])
         
     }
