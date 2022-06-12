@@ -16,6 +16,7 @@ class TodoListViewController: UIViewController {
     let segmenredControl = UISegmentedControl(items: ["All", "Completed"])
     let tableView = UITableView()
     
+    
     var filter = Filter.all
     
     var allEntries: [Entry] = [] {
@@ -38,7 +39,7 @@ class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
+        view.backgroundColor = .green
         navigationItem.title = "Todo list"
         
         setUpAddButton()
@@ -142,12 +143,12 @@ class TodoListViewController: UIViewController {
 
 
 extension TodoListViewController: AddToDoDelegate {
-    func setText(_ text: String?) {
+    func setText(_ text: String?, _ date: Date? ) {
 //        entry.text = text ?? ""
         guard let text = text else {
             return
         }
-        let entry = Entry(isCompleted: false, text: text)
+        let entry = Entry(isCompleted: false, text: text, date: date )
         allEntries.append(entry)
         
         saveAllEntries()
@@ -162,6 +163,11 @@ extension TodoListViewController: UITableViewDataSource { // создание я
             var entry =  filtredEntries[indexPath.row]
             cell.listLabel.text = entry.text
 //            cell.dateLable.text = entry.date
+            if let date = entry.date {
+                let dateFormatterGet = DateFormatter()
+                dateFormatterGet.dateFormat = "dd.MM.yy HH:mm"
+                cell.dateLable.text = "\(dateFormatterGet.string(from: date))"
+            }
             cell.uiSwitch.isOn = entry.isCompleted
             cell.handleSwitchChange = { isOn in
                 entry.isCompleted = isOn

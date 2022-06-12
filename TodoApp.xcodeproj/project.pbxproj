@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE4DCAF1280B37E700082F4E /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DCAF0280B37E700082F4E /* Entry.swift */; };
+		EE7A668E2855226100C7872B /* CustomUiColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A668D2855226100C7872B /* CustomUiColor.swift */; };
 		EEB06D77280491F800F5717D /* AddToDoViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB06D76280491F800F5717D /* AddToDoViewConroller.swift */; };
 		EEB55EA128035F1B0095B165 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB55EA028035F1B0095B165 /* AppDelegate.swift */; };
 		EEB55EA328035F1B0095B165 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB55EA228035F1B0095B165 /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		EE4DCAF0280B37E700082F4E /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		EE7A668D2855226100C7872B /* CustomUiColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUiColor.swift; sourceTree = "<group>"; };
 		EEB06D76280491F800F5717D /* AddToDoViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoViewConroller.swift; sourceTree = "<group>"; };
 		EEB55E9D28035F1B0095B165 /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB55EA028035F1B0095B165 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		EEB55E9F28035F1B0095B165 /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
+				EE7A668D2855226100C7872B /* CustomUiColor.swift */,
 				EEB55EA028035F1B0095B165 /* AppDelegate.swift */,
 				EEB55EA228035F1B0095B165 /* SceneDelegate.swift */,
 				EEB55EA428035F1B0095B165 /* TodoListViewController.swift */,
@@ -149,6 +152,7 @@
 				EEB55EA128035F1B0095B165 /* AppDelegate.swift in Sources */,
 				EEB55EA328035F1B0095B165 /* SceneDelegate.swift in Sources */,
 				EEB06D77280491F800F5717D /* AddToDoViewConroller.swift in Sources */,
+				EE7A668E2855226100C7872B /* CustomUiColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

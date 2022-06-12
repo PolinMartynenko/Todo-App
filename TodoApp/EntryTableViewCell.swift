@@ -75,7 +75,6 @@ class EntryTableViewCell : UITableViewCell {
     }
     
     private func setUpDatelable(){
-        dateLable.text = "hglg"
         dateLable.numberOfLines = 0
         lableStackView.addArrangedSubview(dateLable)
         dateLable.translatesAutoresizingMaskIntoConstraints = false

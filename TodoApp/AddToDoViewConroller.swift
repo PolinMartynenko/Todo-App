@@ -16,7 +16,7 @@ class AddToDoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .skyBlue
         navigationItem.title = "Add tour task"
         setUpTextField()
         setUpDatePicker()
@@ -24,7 +24,7 @@ class AddToDoViewController: UIViewController {
     }
     
     @objc func doneButtonTouch(){
-        delegate?.setText(textField.text)
+        delegate?.setText(textField.text, datePicker.date)
         navigationController?.popViewController(animated: true)//закрытие красного экрана
     }
     
@@ -57,8 +57,9 @@ class AddToDoViewController: UIViewController {
     
     private func setUpDoneButton(){
         doneButton.setTitle("Done", for: .normal)
-        doneButton.setTitleColor(.red, for: .normal)
-        doneButton.backgroundColor = .white
+        doneButton.setTitleColor(.white, for: .normal)
+        doneButton.backgroundColor = .blue
+        doneButton.layer.cornerRadius = 10
         doneButton.addTarget(self, action: #selector(doneButtonTouch), for: .touchUpInside)
         
         //позиционирование
@@ -80,18 +81,17 @@ extension AddToDoViewController: UITextFieldDelegate{
         
         guard let stringRange = Range(range, in: text) else {return false}
         let updateText = text.replacingCharacters(in: stringRange, with: string)
-        return updateText.count <= 15
+        return updateText.count <= 25
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool { //обработка нажатия кнопки done на клавиатуре.
         print("return touched")
-        delegate?.setText(textField.text)
+        delegate?.setText(textField.text, datePicker.date)
         navigationController?.popViewController(animated: true)
         return true
     }
 }
 
 protocol AddToDoDelegate {
-    func setText(_ text: String?)
-    
+    func setText(_ text: String?,_ date:Date?)
 }
