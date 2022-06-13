@@ -38,9 +38,11 @@ class TodoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         view.backgroundColor = .green
         navigationItem.title = "Todo list"
+        view.backgroundColor = .pinkForTodoList
+        
         
         setUpAddButton()
         setUpSegmentedControl()
@@ -89,6 +91,7 @@ class TodoListViewController: UIViewController {
         tableView.delegate = self
         tableView.register(EntryTableViewCell.self, forCellReuseIdentifier: "Cell")
         self.view.addSubview(tableView)
+        tableView.layer.cornerRadius = 15
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: segmenredControl.bottomAnchor, constant: 10),

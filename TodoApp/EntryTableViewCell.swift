@@ -19,7 +19,7 @@ class EntryTableViewCell : UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .cyan
+        backgroundColor = .darkPinkForCell
         setUpStackView()
     }
     
@@ -86,6 +86,7 @@ class EntryTableViewCell : UITableViewCell {
     private func setUpLable(){
 //        listLabel.text = entry.text
         listLabel.numberOfLines = 0
+        listLabel.font = UIFont.boldSystemFont(ofSize: 17)
         lableStackView.addArrangedSubview(listLabel)
         listLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -95,8 +96,8 @@ class EntryTableViewCell : UITableViewCell {
     
     private func setUpEditButton(){
         editButton.setTitle("Edit", for: .normal)
-        editButton.setTitleColor(.red, for: .normal)
-        editButton.backgroundColor = .blue //цвет фотки
+        editButton.setTitleColor(.white, for: .normal)
+        editButton.backgroundColor = .darkForEditButton //цвет кнопки
         stackView.addArrangedSubview(editButton)
         editButton.layer.cornerRadius = 10 //скругление кнопки
         editButton.addTarget(self, action: #selector(editButtonTouched), for: .touchUpInside)

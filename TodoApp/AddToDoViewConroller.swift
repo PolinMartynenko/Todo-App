@@ -58,7 +58,7 @@ class AddToDoViewController: UIViewController {
     private func setUpDoneButton(){
         doneButton.setTitle("Done", for: .normal)
         doneButton.setTitleColor(.white, for: .normal)
-        doneButton.backgroundColor = .blue
+        doneButton.backgroundColor = .darkBlueForDoneButton
         doneButton.layer.cornerRadius = 10
         doneButton.addTarget(self, action: #selector(doneButtonTouch), for: .touchUpInside)
         
